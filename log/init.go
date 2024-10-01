@@ -80,6 +80,8 @@ func (f *LiteyukiFormatter) Format(entry *logrus.Entry) ([]byte, error) {
 	}
 	levelText := Color(color, "["+logLevel+"]")
 	// 格式化日志信息并添加颜色
+	// 去除message两端的【】
+	message = message[1 : len(message)-1]
 	b.WriteString(fmt.Sprintf("%s %s %s\n", timeText, levelText, message))
 	return b.Bytes(), nil
 }
